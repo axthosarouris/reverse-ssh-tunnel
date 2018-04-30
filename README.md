@@ -10,7 +10,7 @@ We also assume that the operating system is a Linux system which runs systemd se
 4. Edit the file rtunnel.service to contain the correct information and add it in the folder /etc/system/systemd/
 5. Run as root the command `systemctl daemon-reload`
 6. Start the service with the command `service rtunnel start`
-
+7. Connect to the client by issuing the command `ssh -p 2225 remote.host.com` where `2225` is a port of your choice and `remote.host.com` is the SSH server.
 
 ## Debuging 
 
@@ -26,5 +26,10 @@ To debug run the command   `/usr/bin/autossh -M 0 -f  -N  -i /path/to/.ssh/id_rs
 * -R   : port forwarding. Forwards the port 2225 to the port 22 in the localhost. 
 
 ## Explanation of parameters:
+
+* username: the username mentioned in the id_rsa files.
+* remote.host.com: the SSH server
+* 2225 the port you want to use  to forward the 22 port of your client 
+
 
 
