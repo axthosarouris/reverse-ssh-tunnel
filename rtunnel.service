@@ -1,17 +1,12 @@
 [Unit]
-Description=Keeps a tunnel to 'remote.example.com' open
-After=network-online.target ssh.service
+Description = Reverse ssh tunnel
+After = network.target network-online.target 
 
 [Service]
-User=autossh
-# -p [PORT]
-# -l [user]
-# -M 0 --> no monitoring
-# -N Just open the connection and do nothing (not interactive)
-# LOCALPORT:IP_ON_EXAMPLE_COM:PORT_ON_EXAMPLE_COM
-Environment=AUTOSSH_GATETIME=0
-ExecStart=/usr/bin/autossh -M 0 -N -q -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -p 22 -l autossh remote.example.com -L 7474:127.0.0.1:7474 -i /home/autossh/.ssh/id_rsa
-ExecStop=killall -s KILL autossh
+User = root
+Type = forking
+ExecStart = /usr/bin/autossh -M 0 -f  -N  -i /home/username/.ssh/id_rsa -R 2225:localhost:22 -l username  remote.host.com
+StartLimitInterval = 60
 
 [Install]
-WantedBy=multi-user.target
+WantedBy = multi-user.target

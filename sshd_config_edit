@@ -1,0 +1,4 @@
+#Add this line at the end of the sshd_config file
+
+GatewayPorts yes
+
