@@ -7,7 +7,7 @@ After =  network-online.target
 User = root
 #Type = forking
 Environment=AUTOSSH_GATETIME=0
-ExecStart = /usr/bin/autossh -M 0 -q  -N -o "PubKeyAuthentication=yes" -o "PasswordAuthentication=no" -o "ExitOnForwardFailure=yes" -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3"  -i /home/username/.ssh/id_rsa -R 2225:localhost:22 -l username   remote-host.com
+ExecStart = /usr/bin/autossh -M 0 -q -N -o "PubKeyAuthentication=yes" -o "PasswordAuthentication=no" -o "ExitOnForwardFailure=yes" -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3"  -i /home/[LOCAL USER]/.ssh/id_rsa -R [REMOTE PORT]:localhost:22 -l [REMOTE LOGIN] [REMOTE HOST]
 ExecStop= /usr/bin/killall autossh
 RestartSec=5
 Restart=always

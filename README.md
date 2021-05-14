@@ -7,14 +7,15 @@ We also assume that the operating system is a Linux system which runs systemd se
 
 
 1. Generate an id_rsa key using the `ssh-keygen` command.
-2. Copy the generated `id_rsa.pub` file to the SSH server .
+2. Copy the generated `id_rsa.pub` file to the SSH server.
 3. Add the line from the file sshd_config_edit to the end of the sshd_config file of your SSH server.
 4. Edit the file rtunnel.service to contain the correct information and add it in the folder 
 /etc/system/systemd/
 5. Clean ~/.ssh/known_hosts  and /root/.ssh/known_hosts if necessary
-6. Open the port `2225` at the SSH server
+6. Open the port `[REMOTE PORT]` at the SSH server
 5. Run as root the command `systemctl daemon-reload`
-6. Start the service with the command `service rtunnel start`
+6. Start the service with the command `sudo systemctl start rtunnel`
+7. Enable on startup: `sudo systemctl enable rtunnel`
 7. Connect to the client by issuing the command `ssh -p 2225 remote.host.com` where `2225` is a port of your choice and `remote.host.com` is the SSH server.
 
 ## Debuging 
